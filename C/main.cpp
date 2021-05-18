@@ -1,55 +1,73 @@
 #include <iostream>
-#include <unordered_map>
+#include <map>
 #include <vector>
+#include <string>
+#include <string.h>
+#include <stdio.h>
+
+
 using namespace std;
 
 int main() {
-    unordered_map<int, unordered_map<string, int>> levels;
-    vector<int> output;
+    // cin.sync_with_stdio(false);
+    vector<map<string, int>> levels;
+    levels.reserve(50000);
     int current_level = 0;
-    unordered_map<string, int> block_variables;
-    levels[current_level] = block_variables;
+    map<string, int> block_variables;
+    levels.push_back(block_variables);
+
+    // int MAX_LINE = 22;
     string line;
-    while (getline(cin, line)) {
+    // char *result;
+    while(true) {
+        cin>>line;
+        if (line.compare("tmp") == 0)
+            break;
+     // while (getline(cin, line)) {
+    //while((result = fgets(line, MAX_LINE, stdin )) != NULL) {
 
-        if (line == "{") {
+
+            if (strcmp(line.c_str(), "{") == 0) {
             current_level++;
-            unordered_map<string, int> block_variables;
-            levels[current_level] = block_variables;
+            map<string, int> block_variables;
+            levels.push_back(block_variables);
         }
 
-        if (line == "}") {
-            levels.erase(current_level);
+        else if (strcmp(line.c_str(), "}") == 0) {
+            levels.pop_back();
             current_level--;
-           // block_variables = levels[current_level];
         }
-        if (line.find('=') != string::npos) {
+
+        else {
             int equal_position = line.find('=');
             string var1 = line.substr(0, equal_position);
-            line.erase(0, equal_position + 1);
+            string after_equal = line.substr(equal_position + 1, line.length() - 1);
 
             // input "var=value"
-            if (line[0] == '-' || isdigit(line[0])) {
-                (levels[current_level])[var1] = stoi(line);
+            if (after_equal[0] == '-' || isdigit(after_equal[0])) {
+                (levels[current_level])[var1] = stoi(after_equal);
             }
+
             // input "var1=var2"
             else {
-                if ((levels[current_level]).find(line) != (levels[current_level]).end()) {
-                    (levels[current_level])[var1] = (levels[current_level])[line];
-                    output.push_back((levels[current_level])[line]);
+                if ((levels[current_level]).find(after_equal) != (levels[current_level]).end()) {
+                    int var2 = (levels[current_level])[after_equal];
+                    (levels[current_level])[var1] = var2;
+                    cout << var2 << endl;
+
                 }
                 else {
                     int i = current_level - 1;
                     i = max(i, 0);
-                    while (i > 0 && levels[i].find(line) == levels[i].end()) i--;
-                    (levels[current_level])[var1] = (levels[i])[line];
-                    output.push_back((levels[i])[line]);
+                    while (i > 0 && levels[i].find(after_equal) == levels[i].end()) i--;
+                    int var2 = (levels[i])[after_equal];
+                    (levels[current_level])[var1] = var2;
+                    (levels[current_level])[after_equal] = var2;
+                    cout << var2 << endl;
                 }
             }
         }
-    }
-    for (auto &value: output) {
-        cout << value << endl;
+        line = "tmp";
     }
 
     return 0;
