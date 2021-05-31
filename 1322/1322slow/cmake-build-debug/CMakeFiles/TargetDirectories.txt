@@ -1,0 +1,3 @@
+C:/Users/vasil/Documents/Algorithms/1322/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/vasil/Documents/Algorithms/1322/cmake-build-debug/CMakeFiles/1322.dir
+C:/Users/vasil/Documents/Algorithms/1322/cmake-build-debug/CMakeFiles/edit_cache.dir

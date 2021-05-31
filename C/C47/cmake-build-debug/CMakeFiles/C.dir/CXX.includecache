@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/vasil/Documents/Algorithms/C/main.cpp
+iostream
+-
+map
+-
+vector
+-
+string
+-
+string.h
+-
+stdio.h
+-
+
