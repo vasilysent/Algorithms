@@ -1,0 +1,3 @@
+C:/Users/vasil/Documents/Algorithms/1604/cmake-build-debug/CMakeFiles/1604.dir
+C:/Users/vasil/Documents/Algorithms/1604/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/vasil/Documents/Algorithms/1604/cmake-build-debug/CMakeFiles/rebuild_cache.dir
